@@ -16,19 +16,27 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://6193ffd50b39a70017b156b8.mockapi.io/api';
 
-export const addContact = (name, number) => dispatch => {
-    const contact = {
-        // id: uuid(),
-        name,
-        phone: number
-    };
+// export const addContact = (name, number) => dispatch => {
+//     const contact = {
+//         // id: uuid(),
+//         name,
+//         phone: number
+//     };
     
-    dispatch(addContactRequest());
+//     dispatch(addContactRequest());
     
-    axios.post('/contacts', contact)
-        .then(({ data }) => dispatch(addContactSuccess(data)))
-            .catch(error => dispatch(addContactError(error)))
-};
+//     axios.post('/contacts', contact)
+//         .then(({ data }) => dispatch(addContactSuccess(data)))
+//             .catch(error => dispatch(addContactError(error)))
+// };
+
+export const addContact = createAsyncThunk('contacts/addContactRequest',
+    async = (name, number) => {
+        const contact = {name, phone: number};
+        const { data } = axios.post('/contacts', contact);
+        return data;
+    }
+);
 
 export const deleteContact = id => dispatch => {
     dispatch(deleteContactRequest());
