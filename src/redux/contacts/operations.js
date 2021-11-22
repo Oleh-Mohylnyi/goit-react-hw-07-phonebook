@@ -2,15 +2,15 @@
 import axios from 'axios';
 // import { v4 as uuid } from 'uuid';
 import {
-    addContactError,
-    addContactRequest,
-    addContactSuccess,
+    // addContactError,
+    // addContactRequest,
+    // addContactSuccess,
     deleteContactRequest,
     deleteContactSuccess,
     deleteContactError,
-    fetchContactsError,
-    fetchContactsSuccess,
-    fetchContactsRequest
+    // fetchContactsError,
+    // fetchContactsSuccess,
+    // fetchContactsRequest
 } from './actions';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -31,9 +31,9 @@ axios.defaults.baseURL = 'https://6193ffd50b39a70017b156b8.mockapi.io/api';
 // };
 
 export const addContact = createAsyncThunk('contacts/addContactRequest',
-    async = (name, number) => {
+    async (name, number) => {
         const contact = {name, phone: number};
-        const { data } = axios.post('/contacts', contact);
+        const { data } = await axios.post('/contacts', contact);
         return data;
     }
 );
