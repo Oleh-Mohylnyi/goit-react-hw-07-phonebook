@@ -5,16 +5,16 @@ import {
     // addContactError,
     // addContactRequest,
     // addContactSuccess,
-    deleteContactRequest,
-    deleteContactSuccess,
-    deleteContactError,
+    // deleteContactRequest,
+    // deleteContactSuccess,
+    // deleteContactError,
     // fetchContactsError,
     // fetchContactsSuccess,
     // fetchContactsRequest
 } from './actions';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://6193ffd50b39a70017b156b8.mockapi.io/api';
+axios.defaults.baseURL = 'https://619d65ca131c600017088eee.mockapi.io/contacts';
 
 // export const addContact = (name, number) => dispatch => {
 //     const contact = {
@@ -22,29 +22,35 @@ axios.defaults.baseURL = 'https://6193ffd50b39a70017b156b8.mockapi.io/api';
 //         name,
 //         phone: number
 //     };
-    
 //     dispatch(addContactRequest());
-    
 //     axios.post('/contacts', contact)
 //         .then(({ data }) => dispatch(addContactSuccess(data)))
 //             .catch(error => dispatch(addContactError(error)))
 // };
 
-export const addContact = createAsyncThunk('contacts/addContactRequest',
-    async (name, number) => {
-        const contact = {name, phone: number};
-        const { data } = await axios.post('/contacts', contact);
-        return data;
+
+export const addContact = createAsyncThunk('contacts/addContact',
+async (name, number) => {
+    const contact = ( name, number );
+    const { data } = await axios.post('', contact);
+    return data;
     }
 );
 
-export const deleteContact = id => dispatch => {
-    dispatch(deleteContactRequest());
-    
-    axios.delete(`/contacts/:${id}`)
-        .then(({ id }) => dispatch(deleteContactSuccess(id)))
-            .catch(error => dispatch(deleteContactError(error)))
-};
+// export const deleteContact = id => dispatch => {
+//     dispatch(deleteContactRequest());
+//     axios.delete(`/contacts/:${id}`)
+//         .then(({ id }) => dispatch(deleteContactSuccess(id)))
+//             .catch(error => dispatch(deleteContactError(error)))
+// };
+
+export const deleteContact = createAsyncThunk('contacts/deleteContact',
+    async (id) => {
+        const { date } = axios.delete(`/:${id}`);
+        console.log(date);
+        return date;
+}
+)
 
 // export const fetchContacts = () => async dispatch => {
 //     dispatch(fetchContactsRequest());
@@ -56,9 +62,9 @@ export const deleteContact = id => dispatch => {
 //     }
 // };
 
-export const fetchContacts = createAsyncThunk('contacts/fetchContactRequest',
+export const fetchContacts = createAsyncThunk('contacts/fetchContact',
     async () => {
-        const { data } = await axios.get('/contacts');
+        const { data } = await axios.get('');
         return data
      }
 );

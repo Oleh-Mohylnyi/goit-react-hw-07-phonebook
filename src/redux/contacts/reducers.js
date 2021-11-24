@@ -6,14 +6,14 @@ import {
     // addContactError,
     // addContactRequest,
     // addContactSuccess,
-    deleteContactSuccess,
+    // deleteContactSuccess,
     // deleteContactError,
     // deleteContactRequest,
     // fetchContactsSuccess,
     // fetchContactsRequest,
     // fetchContactsError
 } from './actions';
-import { fetchContacts, addContact } from './operations';
+import { fetchContacts, addContact, deleteContact } from './operations';
 
 
 const initialContacts = [
@@ -22,8 +22,8 @@ const initialContacts = [
 
 const itemsReducer = createReducer(initialContacts, {
     [fetchContacts.fulfilled]: (_, {payload}) => payload,
-    [addContact.fulfilled]: (state, action) => [...state, action.payload],
-    [deleteContactSuccess]: (state, action) => state.filter(item => item.id !== action.payload)
+    [addContact.fulfilled]: (state, {payload}) => [...state, payload],
+    [deleteContact.fulfilled]: (state, {payload}) => state.filter(item => item.id !== payload)
 });
 
 const filterReducer = createReducer('', {
