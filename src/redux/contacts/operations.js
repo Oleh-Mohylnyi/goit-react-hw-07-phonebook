@@ -31,7 +31,7 @@ axios.defaults.baseURL = 'https://619d65ca131c600017088eee.mockapi.io/contacts';
 
 export const addContact = createAsyncThunk('contacts/addContact',
 async (name, number) => {
-    const contact = ( name, number );
+    const contact = { name, number };
     const { data } = await axios.post('', contact);
     return data;
     }
