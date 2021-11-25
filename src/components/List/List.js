@@ -6,7 +6,6 @@ import { getFiltredContacts } from '../../redux/contacts/selectors';
 import {deleteContact} from '../../redux/contacts/operations'
 
 
-
 export default function List() {
     const [editCheckbox, setEditCheckbox] = useState(false)
 

@@ -1,9 +1,8 @@
-// import React, { useEffect } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import s from './form.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContactsItems } from '../../redux/contacts/selectors';
-import {addContact, fetchContacts} from "../../redux/contacts/operations";
+import {addContact} from "../../redux/contacts/operations";
 
 
 export default function Form() {
@@ -14,12 +13,7 @@ export default function Form() {
     const contactsItems = useSelector(getContactsItems);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-    dispatch(fetchContacts())
-    },
-    // eslint-disable-next-line     
-    [])
+  
     
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,7 +49,7 @@ export default function Form() {
                     if (!regNumber.test(number)) {
                         alert("Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +")
                     } else {
-                        dispatch(addContact(name, number))
+                        dispatch(addContact({ name, number }))
 
                     }
                 }

@@ -1,15 +1,25 @@
 import React from 'react';
+import { useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import './App.css';
 import Form from '../components/Form'
 import List from '../components/List'
 import Filter from '../components/Filter';
 import { useSelector } from 'react-redux';
-import {getContactsItems} from '../redux/contacts/selectors'
+import { getContactsItems } from '../redux/contacts/selectors';
+import {fetchContacts} from "../redux/contacts/operations";
 
 function App() {
-
   
-  const contactsItems = useSelector(getContactsItems);
+    const dispatch = useDispatch();
+    const contactsItems = useSelector(getContactsItems);
+  
+    useEffect(() => {
+    dispatch(fetchContacts())
+    },
+    // eslint-disable-next-line     
+    [])
+  
 
     return (
       <div className="app">

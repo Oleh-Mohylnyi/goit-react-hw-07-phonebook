@@ -21,7 +21,6 @@ export default function ListItem({
             className={s.item}>
             <div className={s.contactSpan}>
                 <div>
-                <span>{id} - </span>
                 <span>{name} </span>
                 </div>
                 <span>{phone} </span>
